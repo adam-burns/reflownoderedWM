@@ -24,14 +24,6 @@
         "env": []
     },
     {
-        "id": "d4fc267b074140f6",
-        "type": "tab",
-        "label": "Flow 1",
-        "disabled": false,
-        "info": "",
-        "env": []
-    },
-    {
         "id": "c9cff8dccd3e7c63",
         "type": "subflow",
         "name": "Subflow 1",
@@ -145,21 +137,130 @@
         "endpoint": "http://135.181.35.156:4000/api/explore"
     },
     {
-        "id": "8ba8672253c19bee",
-        "type": "graphql",
-        "z": "6dbb08529c2feac4",
-        "name": "mutation createResourceSpecification resourceClassifiedAs: \"pane\"",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "mutation {\n  createResourceSpecification(\n    resourceSpecification: {\n      name: \"{{payload}}\"\n      resourceClassifiedAs: \"pane\"\n      note: \"nota pane\"\n    }\n  ) {\n    resourceSpecification {\n      id\n      name\n    }\n  }\n}\n",
-        "showDebug": true,
-        "x": 610,
-        "y": 320,
-        "wires": [
-            [],
-            []
-        ]
+        "id": "a287ae1dd51eeecf",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey",
+                "palette": "light"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "c9d709a9e6f0e5d0",
+        "type": "ui_tab",
+        "name": "User Login",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "81a2327eebeb329c",
+        "type": "ui_group",
+        "name": "Default",
+        "tab": "",
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "6f8ed9928a5c8219",
+        "type": "ui_group",
+        "name": "User Credentials",
+        "tab": "c9d709a9e6f0e5d0",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
     },
     {
         "id": "5e3e9edf345cb08e",
@@ -186,25 +287,6 @@
         "x": 180,
         "y": 360,
         "wires": [
-            [
-                "8ba8672253c19bee"
-            ]
-        ]
-    },
-    {
-        "id": "56e154a4b3ebc140",
-        "type": "graphql",
-        "z": "a5c1f7e89e3b03fd",
-        "name": "createEconomicEvent",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "mutation {createEconomicEvent(\n      event: {\n        action: \"produce\",\n        provider: \"{{provider}}\",\n        receiver: \"{{receiver}}\",\n        resourceQuantity: null,\n      },\n      newInventoriedResource: {\n        name: \"{{payload}}\",\n        note: \"notes\",\n        tags: \"tag\"\n      }\n      ) {\n        economicEvent {\n          id\n          note\n          resourceInventoriedAs {\n            id\n            name\n            onhandQuantity {\n              hasNumericalValue\n              hasUnit {\n                label\n                symbol\n              }\n            }\n            accountingQuantity {\n              hasNumericalValue\n              hasUnit {\n                label\n                symbol\n              }\n            }\n          }\n        }\n      }\n    }",
-        "showDebug": true,
-        "x": 440,
-        "y": 160,
-        "wires": [
-            [],
             []
         ]
     },
@@ -243,9 +325,7 @@
         "x": 160,
         "y": 260,
         "wires": [
-            [
-                "56e154a4b3ebc140"
-            ]
+            []
         ]
     },
     {
@@ -317,25 +397,6 @@
         "wires": []
     },
     {
-        "id": "e35842588beca687",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "query  resourceSpecification by id",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "query MyQuery {\n  resourceSpecification(id: \"{{payload}}\") {\n    note\n    name\n    note\n    id\n    resourceClassifiedAs\n  }\n}",
-        "showDebug": false,
-        "x": 560,
-        "y": 440,
-        "wires": [
-            [
-                "cc2b490738580147"
-            ],
-            []
-        ]
-    },
-    {
         "id": "2657e417f7a280b4",
         "type": "inject",
         "z": "727cabf56f83b992",
@@ -378,27 +439,6 @@
         "wires": []
     },
     {
-        "id": "c5234d58e71c5939",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "mutation createResourceSpecification resourceClassifiedAs: \"pane\"",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "mutation {\n  createResourceSpecification(\n    resourceSpecification: {\n      name: \"{{payload}}\"\n      resourceClassifiedAs: \"pane\"\n      note: \"nota pane\"\n    }\n  ) {\n    resourceSpecification {\n      id\n      name\n    }\n  }\n}\n",
-        "showDebug": true,
-        "x": 490,
-        "y": 560,
-        "wires": [
-            [
-                "cc2b490738580147"
-            ],
-            [
-                "cc2b490738580147"
-            ]
-        ]
-    },
-    {
         "id": "bc7ffb3b5356e167",
         "type": "inject",
         "z": "727cabf56f83b992",
@@ -426,27 +466,6 @@
             [
                 "c5234d58e71c5939"
             ]
-        ]
-    },
-    {
-        "id": "290c0e2a75b888f7",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "mutation createResourceSpecification resourceClassifiedAs: \"pane\" panettone",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "mutation {\n  createResourceSpecification(\n    resourceSpecification: {\n      name: \"panettone\"\n      resourceClassifiedAs: \"pane\"\n      note: \"nota panez\"\n    }\n  ) {\n    resourceSpecification {\n      id\n      name\n    }\n  }\n}\n",
-        "showDebug": true,
-        "x": 520,
-        "y": 300,
-        "wires": [
-            [
-                "adaeba8df8381001",
-                "15d13b69700b3f79",
-                "e7b258043edef789"
-            ],
-            []
         ]
     },
     {
@@ -531,63 +550,6 @@
         ]
     },
     {
-        "id": "40c072ba9b76a06f",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "resourceSpecification",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "text",
-        "syntax": "mustache",
-        "template": "query MyQuery {   resourceSpecification (id: \"{{payload}}\") {     note,     name,     note,     id,     resourceClassifiedAs,   } }",
-        "showDebug": false,
-        "x": 660,
-        "y": 60,
-        "wires": [
-            [
-                "2904ace6e2db2de0"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "56909346ae0b2936",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "categories",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "text",
-        "syntax": "mustache",
-        "template": "query MyQuery {\n  categories {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n    }\n    totalCount\n  }\n}\n",
-        "showDebug": false,
-        "x": 630,
-        "y": 120,
-        "wires": [
-            [
-                "2904ace6e2db2de0"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "26bbd87b588de087",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": " resourceSpecifications",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "text",
-        "syntax": "mustache",
-        "template": "query MyQuery query MyQuery {\n  resourcesClassification {\n    name\n  }\n}",
-        "showDebug": false,
-        "x": 660,
-        "y": 180,
-        "wires": [
-            [
-                "2904ace6e2db2de0"
-            ],
-            []
-        ]
-    },
-    {
         "id": "6ce7457c953c42fa",
         "type": "inject",
         "z": "727cabf56f83b992",
@@ -640,44 +602,6 @@
         ]
     },
     {
-        "id": "1a0ceb0c59822944",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": " resourceSpecifications",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "text",
-        "syntax": "mustache",
-        "template": "query MyQuery {\n  resourcesClassification {\n    name\n  }\n}",
-        "showDebug": false,
-        "x": 660,
-        "y": 240,
-        "wires": [
-            [
-                "2904ace6e2db2de0"
-            ],
-            []
-        ]
-    },
-    {
-        "id": "7b1ec27c82af6140",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "query Agents",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "text",
-        "syntax": "mustache",
-        "template": "query agents{\n  agents(limit: 30) {\n    canonicalUrl\n    displayUsername\n    id\n    image\n  }\n}\n",
-        "showDebug": false,
-        "x": 490,
-        "y": 660,
-        "wires": [
-            [
-                "bdb14b78eab721c4"
-            ],
-            []
-        ]
-    },
-    {
         "id": "b56a5d4324b5c24a",
         "type": "inject",
         "z": "727cabf56f83b992",
@@ -718,25 +642,6 @@
         "x": 950,
         "y": 660,
         "wires": []
-    },
-    {
-        "id": "46591adb4083608e",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "query economicResources",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "text",
-        "syntax": "mustache",
-        "template": "query economicResources {\n  economicResources {\n    id\n    image\n    name\n    note\n  }\n}",
-        "showDebug": false,
-        "x": 460,
-        "y": 780,
-        "wires": [
-            [
-                "33cd2bd05dd3e0ad"
-            ],
-            []
-        ]
     },
     {
         "id": "afc235fb9d3b02ce",
@@ -840,25 +745,6 @@
         "x": 910,
         "y": 880,
         "wires": []
-    },
-    {
-        "id": "387ce95725c00385",
-        "type": "graphql",
-        "z": "727cabf56f83b992",
-        "name": "query  resourceSpecification by id",
-        "graphql": "e0d0143ee4f650a7",
-        "format": "handlebars",
-        "syntax": "mustache",
-        "template": "query MyQuery {\n  resourceSpecification(id: \"{{payload}}\") {\n    note\n    name\n    note\n    id\n    resourceClassifiedAs\n  }\n}",
-        "showDebug": false,
-        "x": 500,
-        "y": 860,
-        "wires": [
-            [
-                "ddf265c0e526efe3"
-            ],
-            []
-        ]
     },
     {
         "id": "8380e77d01706fcc",
@@ -1017,6 +903,268 @@
         ]
     },
     {
+        "id": "8ba8672253c19bee",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "mutation createResourceSpecification resourceClassifiedAs: \"pane\"",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "mutation {\n  createResourceSpecification(\n    resourceSpecification: {\n      name: \"{{payload}}\"\n      resourceClassifiedAs: \"pane\"\n      note: \"nota pane\"\n    }\n  ) {\n    resourceSpecification {\n      id\n      name\n    }\n  }\n}\n",
+        "showDebug": true,
+        "x": 610,
+        "y": 320,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "56e154a4b3ebc140",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "createEconomicEvent",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "mutation {createEconomicEvent(\n      event: {\n        action: \"produce\",\n        provider: \"{{provider}}\",\n        receiver: \"{{receiver}}\",\n        resourceQuantity: null,\n      },\n      newInventoriedResource: {\n        name: \"{{payload}}\",\n        note: \"notes\",\n        tags: \"tag\"\n      }\n      ) {\n        economicEvent {\n          id\n          note\n          resourceInventoriedAs {\n            id\n            name\n            onhandQuantity {\n              hasNumericalValue\n              hasUnit {\n                label\n                symbol\n              }\n            }\n            accountingQuantity {\n              hasNumericalValue\n              hasUnit {\n                label\n                symbol\n              }\n            }\n          }\n        }\n      }\n    }",
+        "showDebug": true,
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e35842588beca687",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "query  resourceSpecification by id",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "query MyQuery {\n  resourceSpecification(id: \"{{payload}}\") {\n    note\n    name\n    note\n    id\n    resourceClassifiedAs\n  }\n}",
+        "showDebug": false,
+        "x": 560,
+        "y": 440,
+        "wires": [
+            [
+                "cc2b490738580147"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "c5234d58e71c5939",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "mutation createResourceSpecification resourceClassifiedAs: \"pane\"",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "mutation {\n  createResourceSpecification(\n    resourceSpecification: {\n      name: \"{{payload}}\"\n      resourceClassifiedAs: \"pane\"\n      note: \"nota pane\"\n    }\n  ) {\n    resourceSpecification {\n      id\n      name\n    }\n  }\n}\n",
+        "showDebug": true,
+        "x": 490,
+        "y": 560,
+        "wires": [
+            [
+                "cc2b490738580147"
+            ],
+            [
+                "cc2b490738580147"
+            ]
+        ]
+    },
+    {
+        "id": "290c0e2a75b888f7",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "mutation createResourceSpecification resourceClassifiedAs: \"pane\" panettone",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "mutation {\n  createResourceSpecification(\n    resourceSpecification: {\n      name: \"panettone\"\n      resourceClassifiedAs: \"pane\"\n      note: \"nota panez\"\n    }\n  ) {\n    resourceSpecification {\n      id\n      name\n    }\n  }\n}\n",
+        "showDebug": true,
+        "x": 520,
+        "y": 300,
+        "wires": [
+            [
+                "adaeba8df8381001",
+                "15d13b69700b3f79",
+                "e7b258043edef789"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "40c072ba9b76a06f",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "resourceSpecification",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "text",
+        "syntax": "mustache",
+        "template": "query MyQuery {   resourceSpecification (id: \"{{payload}}\") {     note,     name,     note,     id,     resourceClassifiedAs,   } }",
+        "showDebug": false,
+        "x": 660,
+        "y": 60,
+        "wires": [
+            [
+                "2904ace6e2db2de0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "56909346ae0b2936",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "categories",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "text",
+        "syntax": "mustache",
+        "template": "query MyQuery {\n  categories {\n    pageInfo {\n      hasNextPage\n      hasPreviousPage\n    }\n    totalCount\n  }\n}\n",
+        "showDebug": false,
+        "x": 630,
+        "y": 120,
+        "wires": [
+            [
+                "2904ace6e2db2de0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "26bbd87b588de087",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": " resourceSpecifications",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "text",
+        "syntax": "mustache",
+        "template": "query MyQuery query MyQuery {\n  resourcesClassification {\n    name\n  }\n}",
+        "showDebug": false,
+        "x": 660,
+        "y": 180,
+        "wires": [
+            [
+                "2904ace6e2db2de0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1a0ceb0c59822944",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": " resourceSpecifications",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "text",
+        "syntax": "mustache",
+        "template": "query MyQuery {\n  resourcesClassification {\n    name\n  }\n}",
+        "showDebug": false,
+        "x": 660,
+        "y": 240,
+        "wires": [
+            [
+                "2904ace6e2db2de0"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7b1ec27c82af6140",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "query Agents",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "text",
+        "syntax": "mustache",
+        "template": "query agents{\n  agents(limit: 30) {\n    canonicalUrl\n    displayUsername\n    id\n    image\n  }\n}\n",
+        "showDebug": false,
+        "x": 490,
+        "y": 660,
+        "wires": [
+            [
+                "bdb14b78eab721c4"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "46591adb4083608e",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "query economicResources",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "text",
+        "syntax": "mustache",
+        "template": "query economicResources {\n  economicResources {\n    id\n    image\n    name\n    note\n  }\n}",
+        "showDebug": false,
+        "x": 460,
+        "y": 780,
+        "wires": [
+            [
+                "33cd2bd05dd3e0ad"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "387ce95725c00385",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "query  resourceSpecification by id",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "query MyQuery {\n  resourceSpecification(id: \"{{payload}}\") {\n    note\n    name\n    note\n    id\n    resourceClassifiedAs\n  }\n}",
+        "showDebug": false,
+        "x": 500,
+        "y": 860,
+        "wires": [
+            [
+                "ddf265c0e526efe3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "666de9b2a745c73e",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "http://135.181.35.156:4000/api/explore",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "mutation {\n   \n      login(emailOrUsername: \"{{emailOrUsername}}\", password: \"{{passwd}}\") {\n      token # Use the token to activate a session with the server\n    }\n}",
+        "showDebug": true,
+        "x": 710,
+        "y": 100,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "f6e1e392a9c88352",
+        "type": "graphql",
+        "z": "727cabf56f83b992",
+        "name": "Request Bearer Token",
+        "graphql": "e0d0143ee4f650a7",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "mutation {\n   \n      login(emailOrUsername: \"{{emailOrUsername}}\", password: \"{{passwd}}\") {\n      token # Use the token to activate a session with the server\n    }\n}",
+        "showDebug": true,
+        "x": 460,
+        "y": 520,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
         "id": "935b3e0a5cf84e10",
         "type": "inject",
         "z": "c107fab43a12cc56",
@@ -1050,6 +1198,13 @@
         "rules": [
             {
                 "t": "set",
+                "p": "emailOrUsername",
+                "pt": "msg",
+                "to": "emailOrUsername",
+                "tot": "global"
+            },
+            {
+                "t": "set",
                 "p": "passwd",
                 "pt": "msg",
                 "to": "passwd",
@@ -1064,20 +1219,23 @@
         "x": 440,
         "y": 100,
         "wires": [
-            [
-                "666de9b2a745c73e"
-            ]
+            []
         ]
     },
     {
         "id": "ace41e1f09e93531",
         "type": "inject",
         "z": "c107fab43a12cc56",
-        "name": "Set password",
+        "name": "Set User Credentials",
         "props": [
             {
+                "p": "emailOrUsername",
+                "v": "adamb@free2air.net",
+                "vt": "str"
+            },
+            {
                 "p": "passwd",
-                "v": "password",
+                "v": "f4zE2VCjinxD7HQ",
                 "vt": "str"
             }
         ],
@@ -1086,45 +1244,11 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "x": 130,
+        "x": 150,
         "y": 40,
         "wires": [
             [
-                "44b7f62a0c017353"
-            ]
-        ]
-    },
-    {
-        "id": "44b7f62a0c017353",
-        "type": "change",
-        "z": "c107fab43a12cc56",
-        "name": "",
-        "rules": [
-            {
-                "t": "set",
-                "p": "passwd",
-                "pt": "global",
-                "to": "passwd",
-                "tot": "msg"
-            },
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "passwd",
-                "tot": "global"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 480,
-        "y": 40,
-        "wires": [
-            [
-                "a8a04515c2c69ffb"
+                "68b030a290a82aaa"
             ]
         ]
     },
@@ -1137,10 +1261,11 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 750,
+        "x": 730,
         "y": 40,
         "wires": []
     },
@@ -1158,7 +1283,7 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 1170,
-        "y": 80,
+        "y": 60,
         "wires": []
     },
     {
@@ -1172,7 +1297,7 @@
         "syntax": "mustache",
         "template": "Bearer {{payload.login.token}}",
         "output": "str",
-        "x": 1020,
+        "x": 980,
         "y": 80,
         "wires": [
             [
@@ -1207,13 +1332,59 @@
         ]
     },
     {
-        "id": "bf5b869046bee7a5",
+        "id": "68b030a290a82aaa",
+        "type": "change",
+        "z": "c107fab43a12cc56",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "emailOrUsername",
+                "pt": "global",
+                "to": "emailOrUsername",
+                "tot": "msg"
+            },
+            {
+                "t": "set",
+                "p": "passwd",
+                "pt": "global",
+                "to": "passwd",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 440,
+        "y": 40,
+        "wires": [
+            [
+                "a8a04515c2c69ffb"
+            ]
+        ]
+    },
+    {
+        "id": "1455fd270a02a9ef",
         "type": "inject",
         "z": "c107fab43a12cc56",
-        "name": "password",
+        "name": "Set User Credentials",
         "props": [
             {
-                "p": "payload"
+                "p": "emailOrUsername",
+                "v": "adamb@free2air.net",
+                "vt": "str"
+            },
+            {
+                "p": "passwd",
+                "v": "f4zE2VCjinxD7HQ",
+                "vt": "str"
+            },
+            {
+                "p": "time",
+                "v": "",
+                "vt": "date"
             }
         ],
         "repeat": "",
@@ -1221,18 +1392,16 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "passwd",
-        "payloadType": "global",
-        "x": 120,
-        "y": 160,
+        "x": 150,
+        "y": 520,
         "wires": [
             [
-                "23ececa3b315d1f5"
+                "bc08b0b12cc271c4"
             ]
         ]
     },
     {
-        "id": "23ececa3b315d1f5",
+        "id": "d6829ad222491b33",
         "type": "debug",
         "z": "c107fab43a12cc56",
         "name": "",
@@ -1240,41 +1409,69 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 270,
-        "y": 160,
+        "x": 1030,
+        "y": 480,
         "wires": []
     },
     {
-        "id": "666de9b2a745c73e",
-        "type": "graphql",
+        "id": "bc08b0b12cc271c4",
+        "type": "template",
         "z": "c107fab43a12cc56",
-        "name": "http://135.181.35.156:4000/api/explore",
-        "graphql": "e0d0143ee4f650a7",
+        "name": "Bearer Format Template",
+        "field": "payload",
+        "fieldType": "msg",
         "format": "handlebars",
         "syntax": "mustache",
-        "template": "mutation {\n   \n  login(emailOrUsername: \"kostasprint@gmail.com\", password: \"{{passwd}}\") {\n      token # Use the token to activate a session with the server\n    }\n}",
-        "showDebug": true,
-        "x": 720,
-        "y": 100,
+        "template": "Bearer {{payload.login.token}}",
+        "output": "str",
+        "x": 770,
+        "y": 520,
         "wires": [
             [
-                "bce6e0290e97db78"
-            ],
+                "d6829ad222491b33",
+                "9e6d732973913116"
+            ]
+        ]
+    },
+    {
+        "id": "9e6d732973913116",
+        "type": "change",
+        "z": "c107fab43a12cc56",
+        "name": "",
+        "rules": [
+            {
+                "t": "set",
+                "p": "bearer",
+                "pt": "global",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1070,
+        "y": 540,
+        "wires": [
             []
         ]
     },
     {
-        "id": "85af6596f52df097",
+        "id": "b3731ae436f3ebc6",
         "type": "inject",
         "z": "c107fab43a12cc56",
-        "name": "bearer",
+        "name": "Clear User Bearer Token",
         "props": [
             {
-                "p": "payload"
+                "p": "time",
+                "v": "",
+                "vt": "date"
             }
         ],
         "repeat": "",
@@ -1282,18 +1479,55 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "bearer",
-        "payloadType": "global",
-        "x": 110,
-        "y": 220,
+        "x": 170,
+        "y": 440,
         "wires": [
             [
-                "eff4c831b1fb5578"
+                "2f57c0a7efd25c08"
             ]
         ]
     },
     {
-        "id": "eff4c831b1fb5578",
+        "id": "2f57c0a7efd25c08",
+        "type": "change",
+        "z": "c107fab43a12cc56",
+        "name": "Clear Token",
+        "rules": [
+            {
+                "t": "set",
+                "p": "emailOrUsername",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "passwd",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "bearer",
+                "pt": "global",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 430,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "1334f10047f63046",
         "type": "debug",
         "z": "c107fab43a12cc56",
         "name": "",
@@ -1301,13 +1535,98 @@
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
+        "complete": "true",
+        "targetType": "full",
         "statusVal": "",
         "statusType": "auto",
-        "x": 270,
-        "y": 220,
+        "x": 970,
+        "y": 160,
         "wires": []
+    },
+    {
+        "id": "fe8deba01d89aefe",
+        "type": "file in",
+        "z": "c107fab43a12cc56",
+        "name": "",
+        "filename": "",
+        "format": "utf8",
+        "chunk": false,
+        "sendError": false,
+        "encoding": "none",
+        "allProps": false,
+        "x": 120,
+        "y": 900,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "472c36ef3659847a",
+        "type": "comment",
+        "z": "c107fab43a12cc56",
+        "name": "Adam's WIP",
+        "info": "",
+        "x": 130,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "15d6985815f592a9",
+        "type": "comment",
+        "z": "c107fab43a12cc56",
+        "name": "TODO: Credentials to be moved to file read or text input",
+        "info": "",
+        "x": 260,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "639db58931f51a72",
+        "type": "ui_text_input",
+        "z": "c107fab43a12cc56",
+        "name": "",
+        "label": "Login",
+        "tooltip": "",
+        "group": "6f8ed9928a5c8219",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "email",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 110,
+        "y": 940,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae026888b8ae8e2e",
+        "type": "ui_text_input",
+        "z": "c107fab43a12cc56",
+        "name": "",
+        "label": "Password",
+        "tooltip": "",
+        "group": "6f8ed9928a5c8219",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 120,
+        "y": 980,
+        "wires": [
+            []
+        ]
     },
     {
         "id": "59fcc23356d23664",
